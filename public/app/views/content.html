@@ -1,0 +1,31 @@
+<div class="col-xs-12">
+  <form class="form-inline">
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" ng-model="name" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Score</label>
+    <input type="number" ng-model="score" class="form-control">
+  </div>
+  <button ng-click="addData()" class="btn btn-default">ADD</button>
+</form>
+</div>
+<div class="col-xs-12" style="margin-top:30px">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in results">
+        <td>{{row.objectId}}</td>
+        <td>{{row.playerName}}</td>
+        <td>{{row.score}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

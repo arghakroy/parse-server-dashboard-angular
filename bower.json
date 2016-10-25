@@ -1,0 +1,23 @@
+{
+  "name": "parse-server-example",
+  "description": "An example Parse API server using the parse-server module",
+  "main": "public/index.html",
+  "authors": [
+    "ARGHA <argha55@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "localhost:8080",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "angular-ui-router": "0.3.1"
+  }
+}
