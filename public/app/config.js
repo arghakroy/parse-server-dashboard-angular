@@ -2,9 +2,13 @@
 
 //Setting up route
 angular
-  .module('parse-app').config(['$stateProvider','$urlRouterProvider',
-  function($stateProvider, $urlRouterProvider) {
-    
+  .module('parse-app').config(['$stateProvider','$urlRouterProvider','ngParseProvider',
+  function($stateProvider, $urlRouterProvider, ngParseProvider) {
+
+    ngParseProvider.initialize(
+      'appid123',
+      'http://localhost:8080/parse'
+    );
     // For unmatched routes:
     $urlRouterProvider.otherwise('/');
 

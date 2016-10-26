@@ -1,13 +1,9 @@
 
 angular
   .module('parse-app')
-  .controller('MainController',function($scope,$window){
+  .controller('MainController',function($scope,$window,ngParse){
 
-    var Parse=$window.Parse;
-    Parse.initialize('appid123');
-    Parse.serverURL = 'http://localhost:8080/parse';
-
-    var GameScore = Parse.Object.extend("GameScore");
+    var GameScore = ngParse.Object.extend("GameScore");
 
     $scope.addData=function(){
       var gameScore = new GameScore();
@@ -18,8 +14,8 @@ angular
 
       gameScore.save(null, {
         success: function(gameScore) {
-              getData();
-              alert('Data saved');
+            getData();
+            alert('Data saved');
         },
         error: function(gameScore, error) {
           // Execute any logic that should take place if the save fails.
@@ -30,22 +26,18 @@ angular
     }
 
     function getData() {
+        var query = new ngParse.Query(GameScore);
 
-          var query = new Parse.Query(GameScore);
-          query.find({
-            success: function(results) {
-              $scope.$apply(function() {
-                var jsonArray = [];
-                for(var i = 0; i < results.length; i++) {
-                   jsonArray.push(results[i].toJSON());
-                }
-                $scope.results=jsonArray;
-              });
-            },
-            error: function(error) {
-              alert("Error: " + error.code + " " + error.message);
-            }
+        query.find().then(function(results){
+          var jsonArray = [];
+          for(var i = 0; i < results.length; i++) {
+             jsonArray.push(results[i].toJSON());
+          }
+          console.log(jsonArray);
+          $scope.$apply(function(){
+            $scope.results=jsonArray;
           });
+        });
     }
 
     getData();
